@@ -1,6 +1,6 @@
 package org.example;
 
-public static class Functions {
+public class Functions {
   // Might add built in functions if needed here
 
 }

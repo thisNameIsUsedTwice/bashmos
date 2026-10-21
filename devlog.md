@@ -10,3 +10,7 @@
 * **Challenges** How to make the parser, store output intuitively, and use it during runtime. 
 * **Next Steps** Make the parser as a loop, and set it up so args[] can work directly with it. To test, I will probably set up a program that inputs a value at the variable and check if it is correct. 
 
+### Session 3 - [20/10/2026]
+* **What I worked on:** Set parser to identify numbers, works with multiple digits and decimals
+* **Challenges:** Get parser to identify various functions, and how to store them. 
+* **Next Steps:** Determine if ArrayList should be double, String, or something else. Also get it to identify 7 basic symbols (+, -, *, /, ^, '(', ')')
