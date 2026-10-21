@@ -5,57 +5,47 @@ import java.util.ArrayList;
 public class Parser {
 
   // current implementation should output an arraylist of just the numbers
-  public static ArrayList<Double> parse(String equation) {
-    // Takes in string, outputs a 1D arraylist with operations sequentially (idk if
-    // this will work as intented)
-    // If positive, means number. If negative:
-    // -(1 - 7) plus, minus, multiply, divide, exponent, left and right parenthesis
-    // -(8 - 33) variables, 24 letters besides e and i, plus theta and phi
-    // -(34) subscript operation (for variables)
-    // -(35 - 46) 6 trig formulas and their inverses
+  public static ArrayList<Token> parse(String equation) {
+    // Takes in string, outputs a 1D arraylist with numbers and operations
+    // sequentially (idk if this will work as intented)
 
-    ArrayList<Double> output = new ArrayList<>();
+    ArrayList<Token> output = new ArrayList<>();
 
     boolean previous = false;
     int decimel = 0;
     int index = 0;
 
     for (int i = 0; i < equation.length(); i++) {
+      Token t = new Token();
       char c = equation.charAt(i);
       if (Character.isDigit(c)) {
+        t.setTokenType(TokenType.NUMBER);
         if (previous == true && decimel == 0) {
-          output.set(index - 1, output.get(index - 1) * 10 + Character.getNumericValue(c));
-        } else if (decimel > 0) {
-          output.set(index - 1, output.get(index - 1) + Character.getNumericValue(c) * Math.pow(10, -decimel));
+          t.setValue("" + (Double.parseDouble(output.get(index - 1).getValue()) * 10 + Character.getNumericValue(c)));
+          output.set(index - 1, t);
+        } else if (previous == true && decimel > 0) {
+          t.setValue("" + (Double.parseDouble(output.get(index - 1).getValue())
+              + Character.getNumericValue(c) * Math.pow(10, -decimel)));
+          output.set(index - 1, t);
           decimel++;
         } else {
-          output.add((double) Character.getNumericValue(c));
+          t.setValue("" + c);
+          output.add(t);
           index++;
         }
         previous = true;
       } else {
         if (c == '.') {
           decimel = 1;
+          previous = true;
         } else {
           decimel = 0;
+          previous = false;
         }
-        previous = false;
       }
     }
 
     return output;
-
-    /*
-     * if (Character.isDigit(c)) {
-     * output = parse(equation, index + 1);
-     * if (Character.isDigit(next)) {
-     * output.set(0, output.get(0) + Character.getNumericValue(c));
-     * } else {
-     * output.add(0, (double) Character.getNumericValue(c));
-     * return output;
-     * }
-     * }
-     */
-
   }
+
 }

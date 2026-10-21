@@ -14,3 +14,8 @@
 * **What I worked on:** Set parser to identify numbers, works with multiple digits and decimals
 * **Challenges:** Get parser to identify various functions, and how to store them. 
 * **Next Steps:** Determine if ArrayList should be double, String, or something else. Also get it to identify 7 basic symbols (+, -, *, /, ^, '(', ')')
+
+### Session 4 - [20/10/2026]
+* **What I worked on:** Changed ArrayList to a token system
+* **Challenges:** Changing between char, double, String, and Token
+* **Next Steps:** Still need to get it to identify 7 basic symbols, possibly apply PEMDAS to equations without variables. 

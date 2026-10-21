@@ -9,7 +9,7 @@ public class Main {
   public static void main(String[] args) {
     System.out.println("Hello world");
     for (int i = 0; i < args.length; i++) {
-      ArrayList<Double> parsed = Parser.parse(args[i]);
+      ArrayList<Token> parsed = Parser.parse(args[i]);
       System.out.println(parsed);
       for (int j = 0; j < parsed.size(); j++) {
         System.out.println(parsed.get(j));
